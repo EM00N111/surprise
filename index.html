@@ -96,7 +96,6 @@
       filter: drop-shadow(0 8px 15px rgba(0,0,0,0.3));
     }
 
-    /* Buttons */
     .btn-group {
       display: flex;
       gap: 15px;
@@ -130,7 +129,6 @@
       transform: scale(1.05);
     }
 
-    /* STEP 3: Envelope */
     .envelope {
       width: 180px;
       height: 120px;
@@ -160,7 +158,6 @@
       color: #ffd1dc;
     }
 
-    /* STEP 4: Letter */
     .letter-paper {
       background: #fdf6e7;
       color: #333;
@@ -194,7 +191,6 @@
       color: #4a000d;
     }
 
-    /* STEP 5: 3 Gift Options */
     .gifts-wrapper {
       display: flex;
       justify-content: space-around;
@@ -225,7 +221,6 @@
       font-weight: 600;
     }
 
-    /* STEP 6: Reward Card Design */
     .reward-box {
       background: rgba(255, 255, 255, 0.12);
       border: 2px dashed rgba(255, 182, 193, 0.5);
@@ -254,7 +249,6 @@
       text-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
     }
 
-    /* Bottom Action Buttons for Step 6 */
     .bottom-actions {
       display: flex;
       justify-content: space-between;
@@ -301,11 +295,11 @@
 
   <div class="container">
     
-    <!-- STEP 1: Accept My Gift (funnycat.png) -->
+    <!-- STEP 1 -->
     <div class="screen active" id="step1">
       <h1>PLEASE ACCEPT<br>MY GIFT</h1>
       <div class="img-box">
-        <img src="image/funnycat.png" alt="Accept My Gift Cat">
+        <img src="funnycat.png" alt="Accept My Gift Cat">
       </div>
       <div class="btn-group">
         <button class="btn btn-primary" onclick="goToStep(3)">YES</button>
@@ -313,16 +307,16 @@
       </div>
     </div>
 
-    <!-- STEP 2: How Dare You (angrycat.jpg) -->
+    <!-- STEP 2 -->
     <div class="screen dark-bg" id="step2">
       <h1>HOW DARE YOU!</h1>
       <div class="img-box">
-        <img src="image/angrycat.png" alt="Angry Cat">
+        <img src="angrycat.png" alt="Angry Cat">
       </div>
       <button class="btn btn-primary" onclick="goToStep(1)">TRY AGAIN</button>
     </div>
 
-    <!-- STEP 3: Envelope Screen -->
+    <!-- STEP 3 -->
     <div class="screen dark-bg" id="step3">
       <div class="envelope" onclick="goToStep(4)">
         <i class="fa-solid fa-heart"></i>
@@ -331,7 +325,7 @@
       <div style="color: white;"><i class="fa-solid fa-hand-pointer"></i></div>
     </div>
 
-    <!-- STEP 4: Letter Screen -->
+    <!-- STEP 4 -->
     <div class="screen dark-bg" id="step4">
       <div class="letter-paper">
         <h2>My letter to you <span style="color: #d81b60;">♥</span></h2>
@@ -349,7 +343,7 @@
       </div>
     </div>
 
-    <!-- STEP 5: Choose Gift (giftcat.png) -->
+    <!-- STEP 5 -->
     <div class="screen dark-bg" id="step5">
       <div>
         <h1>CHOOSE YOUR GIFT</h1>
@@ -358,15 +352,15 @@
 
       <div class="gifts-wrapper">
         <div class="gift-item" onclick="selectGift(1)">
-          <img src="image/giftcat.png" alt="Gift 1">
+          <img src="giftcat.png" alt="Gift 1">
           <div class="gift-label">Gift #1</div>
         </div>
         <div class="gift-item" onclick="selectGift(2)">
-          <img src="image/giftcat.png" alt="Gift 2">
+          <img src="giftcat.png" alt="Gift 2">
           <div class="gift-label">Gift #2</div>
         </div>
         <div class="gift-item" onclick="selectGift(3)">
-          <img src="image/giftcat.png" alt="Gift 3">
+          <img src="giftcat.png" alt="Gift 3">
           <div class="gift-label">Gift #3</div>
         </div>
       </div>
@@ -374,23 +368,19 @@
       <div style="height: 20px;"></div>
     </div>
 
-    <!-- STEP 6: Gift Reward Screen -->
+    <!-- STEP 6 -->
     <div class="screen dark-bg" id="step6">
       <h1>YOUR SPECIAL GIFT</h1>
       
-      <!-- Displays the custom reward for each gift -->
       <div class="reward-box">
         <span class="reward-title">🎉 Congratulations! You Unlocked:</span>
-        <div id="reward-text-content" class="reward-text">
-          <!-- Text dynamically loaded here -->
-        </div>
+        <div id="reward-text-content" class="reward-text"></div>
       </div>
 
       <div class="img-box" style="height: 150px;">
-        <img src="image/funnycat.png" alt="Final Cat" style="max-height: 140px;">
+        <img src="funnycat.png" alt="Final Cat" style="max-height: 140px;">
       </div>
 
-      <!-- Bottom Actions -->
       <div class="bottom-actions">
         <button class="back-btn-step6" onclick="goToStep(5)"><i class="fa-solid fa-arrow-left"></i> BACK TO GIFTS</button>
         <button class="refresh-btn" onclick="goToStep(1)"><i class="fa-solid fa-rotate-right"></i></button>
