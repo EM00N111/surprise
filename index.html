@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accept My Gift</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@400;500;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f0205;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 400px;
+      height: 650px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 15px rgba(216, 27, 96, 0.3);
+    }
+
+    .screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 30px 20px;
+      text-align: center;
+      background: radial-gradient(circle, #fce4ec 0%, #f8bbd0 100%);
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    .dark-bg {
+      background: radial-gradient(circle, #7a0c1e 0%, #2b000a 100%);
+      color: #ffffff;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #4a000d;
+      letter-spacing: 1px;
+      line-height: 1.3;
+      margin-top: 5px;
+    }
+
+    .dark-bg h1 {
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .sub-text {
+      font-size: 13px;
+      color: #ffb3c1;
+      margin-top: 5px;
+    }
+
+    .img-box {
+      width: 100%;
+      max-width: 260px;
+      height: 240px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .img-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 15px rgba(0,0,0,0.3));
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      padding: 10px 32px;
+      border-radius: 20px;
+      border: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #d81b60, #ad1457);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #f48fb1, #ec407a);
+      color: white;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* STEP 3: Envelope */
+    .envelope {
+      width: 180px;
+      height: 120px;
+      background: #ff85a2;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin-top: 80px;
+      position: relative;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+
+    .envelope:hover {
+      transform: scale(1.06);
+    }
+
+    .envelope i {
+      font-size: 40px;
+      color: #c2185b;
+    }
+
+    .tap-text {
+      font-size: 14px;
+      color: #ffd1dc;
+    }
+
+    /* STEP 4: Letter */
+    .letter-paper {
+      background: #fdf6e7;
+      color: #333;
+      padding: 20px;
+      border-radius: 6px;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      width: 100%;
+      height: 380px;
+    }
+
+    .letter-paper h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      text-align: center;
+      color: #4a000d;
+      margin-bottom: 12px;
+    }
+
+    .letter-body {
+      font-size: 11px;
+      line-height: 1.6;
+      color: #2c2c2c;
+      margin-bottom: 10px;
+    }
+
+    .signature {
+      font-size: 12px;
+      font-weight: 700;
+      color: #4a000d;
+    }
+
+    /* STEP 5: 3 Gift Options */
+    .gifts-wrapper {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      margin-top: 40px;
+    }
+
+    .gift-item {
+      width: 95px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      text-align: center;
+    }
+
+    .gift-item:hover {
+      transform: translateY(-8px) scale(1.05);
+    }
+
+    .gift-item img {
+      width: 100%;
+      height: auto;
+    }
+
+    .gift-label {
+      font-size: 12px;
+      color: #ffb3c1;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    /* STEP 6: Reward Card Design */
+    .reward-box {
+      background: rgba(255, 255, 255, 0.12);
+      border: 2px dashed rgba(255, 182, 193, 0.5);
+      padding: 25px 20px;
+      border-radius: 20px;
+      width: 100%;
+      margin: 20px 0;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .reward-title {
+      font-size: 13px;
+      color: #ffb3c1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .reward-text {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+    }
+
+    /* Bottom Action Buttons for Step 6 */
+    .bottom-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0 10px;
+    }
+
+    .back-btn-step6 {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 8px 18px;
+      border-radius: 18px;
+      font-size: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .back-btn-step6:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .refresh-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .refresh-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- STEP 1: Accept My Gift (funnycat.png) -->
+    <div class="screen active" id="step1">
+      <h1>PLEASE ACCEPT<br>MY GIFT</h1>
+      <div class="img-box">
+        <img src="image/funnycat.png" alt="Accept My Gift Cat">
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="goToStep(3)">YES</button>
+        <button class="btn btn-secondary" onclick="goToStep(2)">NO</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: How Dare You (angrycat.jpg) -->
+    <div class="screen dark-bg" id="step2">
+      <h1>HOW DARE YOU!</h1>
+      <div class="img-box">
+        <img src="image/angrycat.png" alt="Angry Cat">
+      </div>
+      <button class="btn btn-primary" onclick="goToStep(1)">TRY AGAIN</button>
+    </div>
+
+    <!-- STEP 3: Envelope Screen -->
+    <div class="screen dark-bg" id="step3">
+      <div class="envelope" onclick="goToStep(4)">
+        <i class="fa-solid fa-heart"></i>
+      </div>
+      <p class="tap-text">Tap the envelope<br>to open your letter</p>
+      <div style="color: white;"><i class="fa-solid fa-hand-pointer"></i></div>
+    </div>
+
+    <!-- STEP 4: Letter Screen -->
+    <div class="screen dark-bg" id="step4">
+      <div class="letter-paper">
+        <h2>My letter to you <span style="color: #d81b60;">♥</span></h2>
+        <p class="letter-body">
+          If I could give you one gift, it would be the ability to see yourself through my eyes. Only then would you realize how truly special you are.
+        </p>
+        <p class="letter-body">
+          You light up my life with your every word, smile and laugh. You are the best thing to ever happen to me and I love you more than words can express, forever and always.
+        </p>
+        <p class="signature">Yours truly! 💕</p>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="goToStep(3)">BACK</button>
+        <button class="btn btn-primary" onclick="goToStep(5)">CONTINUE</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Choose Gift (giftcat.png) -->
+    <div class="screen dark-bg" id="step5">
+      <div>
+        <h1>CHOOSE YOUR GIFT</h1>
+        <p class="sub-text">♥ Click any gift to open ♥</p>
+      </div>
+
+      <div class="gifts-wrapper">
+        <div class="gift-item" onclick="selectGift(1)">
+          <img src="image/giftcat.png" alt="Gift 1">
+          <div class="gift-label">Gift #1</div>
+        </div>
+        <div class="gift-item" onclick="selectGift(2)">
+          <img src="image/giftcat.png" alt="Gift 2">
+          <div class="gift-label">Gift #2</div>
+        </div>
+        <div class="gift-item" onclick="selectGift(3)">
+          <img src="image/giftcat.png" alt="Gift 3">
+          <div class="gift-label">Gift #3</div>
+        </div>
+      </div>
+
+      <div style="height: 20px;"></div>
+    </div>
+
+    <!-- STEP 6: Gift Reward Screen -->
+    <div class="screen dark-bg" id="step6">
+      <h1>YOUR SPECIAL GIFT</h1>
+      
+      <!-- Displays the custom reward for each gift -->
+      <div class="reward-box">
+        <span class="reward-title">🎉 Congratulations! You Unlocked:</span>
+        <div id="reward-text-content" class="reward-text">
+          <!-- Text dynamically loaded here -->
+        </div>
+      </div>
+
+      <div class="img-box" style="height: 150px;">
+        <img src="image/funnycat.png" alt="Final Cat" style="max-height: 140px;">
+      </div>
+
+      <!-- Bottom Actions -->
+      <div class="bottom-actions">
+        <button class="back-btn-step6" onclick="goToStep(5)"><i class="fa-solid fa-arrow-left"></i> BACK TO GIFTS</button>
+        <button class="refresh-btn" onclick="goToStep(1)"><i class="fa-solid fa-rotate-right"></i></button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function goToStep(step) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(`step${step}`);
+      if(target) target.classList.add('active');
+    }
+
+    function selectGift(giftNumber) {
+      const rewardContent = document.getElementById('reward-text-content');
+      
+      if (giftNumber === 1) {
+        rewardContent.innerHTML = "💋 10 Kisses for You";
+      } else if (giftNumber === 2) {
+        rewardContent.innerHTML = "🫂 20 min Hug with me";
+      } else if (giftNumber === 3) {
+        rewardContent.innerHTML = "🍕 Pizza date with me";
+      }
+
+      goToStep(6);
+    }
+  </script>
+</body>
+</html>

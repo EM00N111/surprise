@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #1a0206;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  height: 650px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 20px;
+  text-align: center;
+  background: linear-gradient(180deg, #fce4ec 0%, #f8bbd0 100%);
+}
+
+.screen.active {
+  display: flex;
+}
+
+.dark-bg {
+  background: radial-gradient(circle, #7a0c1e 0%, #3d000a 100%);
+  color: #ffffff;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: #4a000d;
+  letter-spacing: 1px;
+}
+
+.dark-bg h1 {
+  color: #ffffff;
+}
+
+.sub-text {
+  font-size: 13px;
+  color: #ffb3c1;
+  margin-top: -10px;
+}
+
+.image-wrapper img {
+  max-width: 250px;
+  height: auto;
+}
+
+/* Button Styling */
+.btn-group {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn {
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-primary {
+  background-color: #d81b60;
+  color: white;
+  box-shadow: 0 4px 10px rgba(216, 27, 96, 0.4);
+}
+
+.btn-secondary {
+  background-color: #f48fb1;
+  color: white;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Step 3: Envelope */
+.envelope-container {
+  margin-top: 100px;
+  cursor: pointer;
+}
+
+.envelope {
+  width: 200px;
+  height: 130px;
+  background-color: #ffb6c1;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heart-icon {
+  font-size: 35px;
+  color: #d81b60;
+}
+
+.tap-text {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #e0e0e0;
+}
+
+/* Step 4: Paper Letter */
+.letter-paper {
+  background-color: #fbe8d3;
+  color: #333;
+  padding: 20px;
+  border-radius: 4px;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  margin-top: 10px;
+}
+
+.letter-paper h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.heart-text {
+  color: #d81b60;
+}
+
+.letter-body {
+  font-size: 11px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.signature {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.letter-flower {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 80px;
+}
+
+.bottom-btns {
+  margin-top: 15px;
+}
+
+/* Step 5: Gifts */
+.gifts-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 50px;
+}
+
+.gift-box img {
+  width: 90px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.gift-box img:hover {
+  transform: translateY(-5px);
+}
+
+/* Step 6: Things I Love */
+.love-list {
+  display: flex;
+  gap: 15px;
+  text-align: left;
+  font-size: 11px;
+  margin-top: 15px;
+}
+
+.column p {
+  margin-bottom: 10px;
+  color: #ffd1dc;
+}
+
+.bottom-bunny img {
+  width: 120px;
+}
+
+.reset-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+}
